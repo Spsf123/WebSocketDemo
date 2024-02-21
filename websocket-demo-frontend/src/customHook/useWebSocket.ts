@@ -43,6 +43,10 @@ function useWebSocket(){
     const onMessageReceived = (payload : Stomp.Message) => {
         dispatch(appendMessage(JSON.parse(payload.body)))
     }
+     const onOnlineUsersReceived = (payload : Stomp.Message) => {
+            const onlineUsersCount = JSON.parse(payload.body);
+            dispatch(setOnlineUsers(onlineUsersCount)); // You'll need to implement this action in your Redux slice
+        }
     return {connect,sendMessage}
 }
 
